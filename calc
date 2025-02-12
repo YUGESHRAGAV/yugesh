@@ -1,0 +1,33 @@
+def get_number(number):
+    """Get a valid number input from the user."""
+    while True:
+        try:
+            return float(input(f"Number {number}: "))
+        except ValueError:
+            print("Invalid number, try again.")
+
+def get_operator():
+    """Get a valid mathematical operator from the user."""
+    valid_operators = {"+", "-", "*", "/"}
+    while True:
+        operator = input("Enter an operator (+, -, *, /): ")
+        if operator in valid_operators:
+            return operator
+        print("Invalid operator, try again.")
+
+operand1 = get_number(1)
+operand2 = get_number(2)
+sign = get_operator()
+
+# Handling division by zero before performing the operation
+if sign == "/" and operand2 == 0:
+    print("Error: Division by zero is not allowed.")
+else:
+    operations = {
+        "+": operand1 + operand2,
+        "-": operand1 - operand2,
+        "*": operand1 * operand2,
+        "/": operand1 / operand2,
+    }
+    result = operations[sign]
+    print(f"Result: {operand1} {sign} {operand2} = {result}")
